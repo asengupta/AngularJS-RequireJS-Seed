@@ -1,0 +1,29 @@
+define(["angular", "Q", "jquery",
+  "app/services/services",
+  "lib/libs",
+  "app/directive/directives",
+  "app/controller/controllers",
+  "app/factory/factories"],
+  function(angular, Q, $, services, libs, directives, controllers, factories) {
+    var init = function() {
+      var deferred = Q.defer();
+      var app = angular.module('ExampleApp', []);
+      services.init(app);
+      libs.init(app);
+      directives.init(app);
+      controllers.init(app);
+      factories.init(app);
+      app.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.
+          when('/navigation', {templateUrl: '/example/static/templates/navigation.html', controller: 'navigationController'}).
+          when('/route1', {templateUrl: '/example/static/templates/route1.html', controller: 'route1Controller'}).
+          when('/route2', {templateUrl: '/example/static/templates/route2.html', controller: 'route2Controller'}).
+          otherwise({redirectTo: '/navigation'});
+      }]);
+      var injector = angular.bootstrap($('#ExampleApp'), ['ExampleApp']);
+      deferred.resolve(injector);
+
+      return deferred.promise;
+    };
+    return  {init: init};
+  });
