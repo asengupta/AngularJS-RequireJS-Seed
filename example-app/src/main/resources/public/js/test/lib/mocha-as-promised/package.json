@@ -1,0 +1,31 @@
+{
+    "name": "mocha-as-promised",
+    "description": "Adds “thenable” promise support to the Mocha test runner.",
+    "keywords": ["promises", "promises-aplus", "mocha", "testing"],
+    "version": "1.4.0",
+    "author": "Domenic Denicola <domenic@domenicdenicola.com> (http://domenicdenicola.com)",
+    "license": "WTFPL",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/domenic/mocha-as-promised"
+    },
+    "bugs": "http://github.com/domenic/mocha-as-promised/issues",
+    "main": "mocha-as-promised.js",
+    "scripts": {
+        "test": "mocha",
+        "test-browser": "opener ./test/index.html",
+        "lint": "jshint mocha-as-promised.js"
+    },
+    "peerDependencies": {
+        "mocha": ">= 1.8.0 <2"
+    },
+    "devDependencies": {
+        "coffee-script": "1.6.x",
+        "chai": "1.6.x",
+        "chai-as-promised": ">= 3.3.1 <4",
+        "jshint": "2.x",
+        "mocha": "1.10.x",
+        "opener": "1.x",
+        "q": "0.9.x"
+    }
+}

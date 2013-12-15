@@ -6,7 +6,6 @@ define(["angular", "Q", "jquery",
   "app/factory/factories"],
   function(angular, Q, $, services, libs, directives, controllers, factories) {
     var init = function() {
-      var deferred = Q.defer();
       var app = angular.module('ExampleApp', []);
       services.init(app);
       libs.init(app);
@@ -20,10 +19,16 @@ define(["angular", "Q", "jquery",
           when('/route2', {templateUrl: '/example/static/templates/route2.html', controller: 'route2Controller'}).
           otherwise({redirectTo: '/navigation'});
       }]);
+      return app;
+    };
+
+    var bootstrap = function(app) {
+      var deferred = Q.defer();
       var injector = angular.bootstrap($('#ExampleApp'), ['ExampleApp']);
-      deferred.resolve(injector);
+      deferred.resolve([injector, app]);
 
       return deferred.promise;
-    };
-    return  {init: init};
+
+    }
+    return  {init: init, bootstrap: bootstrap};
   });
