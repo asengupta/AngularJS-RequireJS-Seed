@@ -6,7 +6,7 @@ define(["angular", "Q", "jquery",
   "app/factory/factories"],
   function(angular, Q, $, services, libs, directives, controllers, factories) {
     var init = function() {
-      var app = angular.module('ExampleApp', []);
+      var app = angular.module('ExampleApp', ["ngI18n"]);
       services.init(app);
       libs.init(app);
       directives.init(app);
@@ -19,6 +19,11 @@ define(["angular", "Q", "jquery",
           when('/route2', {templateUrl: '/example/static/templates/route2.html', controller: 'route2Controller'}).
           otherwise({redirectTo: '/navigation'});
       }]);
+      app.value('ngI18nConfig', {
+        defaultLocale: 'en',
+        supportedLocales: ['en', 'es'],
+        basePath: "/example/static/js/app/i18n"
+      });
       return app;
     };
 

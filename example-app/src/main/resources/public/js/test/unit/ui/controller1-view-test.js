@@ -3,7 +3,7 @@ define([ "spec_helper", "duckAngular", "underscore", "Q"], function (mother, Duc
     var DuckDOM = Duck.DOM;
     var UIInteraction = Duck.UIInteraction;
 
-    it("should validate input", function () {
+    it.skip("should validate input", function () {
       securityQuestionsService.getQuestions.returns(Q([]));
       securityQuestionsService.getAllQuestions.returns(Q(allQuestions));
 

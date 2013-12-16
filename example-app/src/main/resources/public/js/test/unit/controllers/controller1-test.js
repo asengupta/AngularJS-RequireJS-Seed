@@ -1,22 +1,9 @@
-define(["controller1", "Q"], function (Controller1, Q) {
+define(["spec_helper", "Q"], function (mother, Q) {
   describe("Controller1 Test", function () {
-    var testScopeMock, locationMock;
-
-    beforeEach(function () {
-      testScopeMock = {};
-      locationMock = { path: sinon.stub(), search: sinon.stub()};
-      locationMock.path.returns(locationMock);
-      locationMock.search.returns(locationMock);
-    });
-
-    var initController = function () {
-      return new Controller1();
-    };
-
-    describe("initialize", function () {
-      it("works", function () {
-        return initController().loaded.then(function () {
-        });
+    it("sets up real registered service if dependency is not explicitly provided", function () {
+      var testScopeMock = {};
+      return mother.createController("route1Controller", { $scope: testScopeMock, $q: Q}).then(function(controller) {
+        expect(testScopeMock.x).to.eql("Real Service1 Data");
       });
     });
   });

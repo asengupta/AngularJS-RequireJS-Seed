@@ -1,8 +1,12 @@
 define([], function() {
   return function ($scope, service1, $q) {
-  	var deferred = $q.defer();
+  	var deferredLoaded = $q.defer();
+  	this.loaded = deferredLoaded.promise;
+
     console.log("In controller1");
-    deferred.resolve();
-    return deferred.promise;
+  	service1.get().then(function(data) {
+  		$scope.x = data;
+  		deferredLoaded.resolve();
+  	});
   };
 });

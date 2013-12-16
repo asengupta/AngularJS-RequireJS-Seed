@@ -8,6 +8,7 @@ require.config({
     //Libs
     "underscore": "lib/underscore-min",
     "lodash": "lib/lodash",
+    "ng-i18n": "lib/ng-i18n",
 
     //Controllers
     "route1-controller": "app/controller/controller1",
@@ -25,6 +26,7 @@ require.config({
     "factory1": "app/factory/factory1",
   },
   shim: {
+    "ng-i18n": {deps: ["angular"], exports: "i18n"},
     'underscore': {exports: '_'},
     'angular': {exports: 'angular'},
     'jquery': {exports: '$'}
