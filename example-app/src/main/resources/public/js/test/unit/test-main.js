@@ -18,12 +18,12 @@ require(["test.config"], function() {
       chai.use(chaiJquery);
       console.log("Ready");
       require([
-        "test/unit/services/service1-test",
+        // "test/unit/services/service1-test",
 
-        "test/unit/controllers/controller1-test",
+        // "test/unit/controllers/controller1-test",
         "test/unit/controllers/controller2-test",
 
-        "test/unit/ui/controller1-view-test"
+        // "test/unit/ui/controller1-view-test"
       ], function () {
         if (window.mochaPhantomJS) {
           mochaPhantomJS.run();

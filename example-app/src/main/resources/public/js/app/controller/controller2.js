@@ -1,9 +1,17 @@
 define([], function() {
   return function ($scope, $location, $q, service2) {
-  	var deferred = $q.defer();
+  	var deferredLoaded = $q.defer();
+  	this.loaded = deferredLoaded.promise;
+	$scope.go = function() {
+		console.log("Was called");
+		$location.path("/route1");
+	};
+
     console.log("In controller2");
-    $scope.y = 23;
-    deferred.resolve();
-    return deferred.promise;
+    service2.get().then(function(data) {
+    	$scope.data = data;
+    	console.log("Service2 returned");
+    	deferredLoaded.resolve();
+    });
   };
 });

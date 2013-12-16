@@ -1,5 +1,5 @@
 define(["controller1", "Q"], function (Controller1, Q) {
-  describe("Auto Refill Prescriptions Controller", function () {
+  describe("Controller1 Test", function () {
     var testScopeMock, locationMock;
 
     beforeEach(function () {

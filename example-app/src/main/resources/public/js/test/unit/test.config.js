@@ -1,6 +1,6 @@
 require.config(
   {
-    baseUrl: "/rxweb/static/js",
+    baseUrl: "/example/static/js",
     paths: {
       "test-setup": "test/unit/test-setup",
       angular: "lib/angular",
