@@ -11,12 +11,11 @@ define(["service1", "Q"], function (Service1Ctor, Q) {
         promise.fail(function(err) { return onError(err); });
         return promise;
       };
-      var postStub = sinon.stub().returns(promise);
-      var httpMock = {post: postStub};
+      var getStub = sinon.stub().returns(promise);
+      var httpMock = {get: getStub};
       var service1 = new Service1Ctor(httpMock, Q);
-      var request = {};
-      var run = service1.get(request);
-      return expect(run).to.be.rejected;
+      var run = service1.getHttp("http://google.com");
+      return expect(run).to.be.fulfilled;
     });
   });
 });
