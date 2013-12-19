@@ -1,4 +1,4 @@
-define([ "spec_helper", "Q", "duckAngular"], function (mother, Q, Duck) {
+define([ "spec_helper", "duckAngular"], function (mother, Duck) {
   describe("Controller 2 UI Spec", function () {
     var DuckDOM = Duck.DOM;
     var UIInteraction = Duck.UIInteraction;
