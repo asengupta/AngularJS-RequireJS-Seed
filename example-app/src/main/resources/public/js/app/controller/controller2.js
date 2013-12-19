@@ -3,14 +3,22 @@ define([], function() {
   	var deferredLoaded = $q.defer();
   	this.loaded = deferredLoaded.promise;
 	$scope.go = function() {
-		console.log("Was called");
 		$location.path("/route1");
 	};
+
+  $scope.changeSomeText = function() {
+    $scope.data = "Some New Data";
+  };
+
+  $scope.refreshData = function() {
+    return service2.get().then(function(data) {
+      $scope.data = data;
+    });
+  };
 
     console.log("In controller2");
     service2.get().then(function(data) {
     	$scope.data = data;
-    	console.log("Service2 returned");
     	deferredLoaded.resolve();
     });
   };
