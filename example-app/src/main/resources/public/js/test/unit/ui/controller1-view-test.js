@@ -12,7 +12,7 @@ define([ "spec_helper", "Q", "duckAngular"], function (mother, Q, Duck) {
         expect(dom.element("#data")[0].innerText).to.eql("Some New Data");
       });
     });
-    it("can refresh data", function () {
+    it("can relected data that is refreshed asynchronously", function () {
       return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
         var dom = new DuckDOM(mvc.view, mvc.scope);
         var interaction = new UIInteraction(dom);
