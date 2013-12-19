@@ -6,7 +6,6 @@ define([ "spec_helper", "duckAngular"], function (mother, Duck) {
     it("can show data", function () {
       return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
         var dom = new DuckDOM(mvc.view, mvc.scope);
-        var interaction = new UIInteraction(dom);
         expect(dom.element("#data")[0].innerText).to.eql("Some Data");
       });
     });
