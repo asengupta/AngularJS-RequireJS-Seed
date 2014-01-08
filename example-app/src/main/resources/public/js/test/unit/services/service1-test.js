@@ -1,8 +1,8 @@
 define(["service1", "Q"], function (Service1Ctor, Q) {
   describe("Service1", function () {
-    it.skip("should work, even if the HTTP call succeeds", function () {
+    it("should work, even if the HTTP call succeeds", function () {
       var httpResponse = {successful: false};
-      var promise = Q.all(httpResponse);
+      var promise = Q.reject(httpResponse);
       promise.success = function(onSuccess) {
         promise.then(function(data) { return onSuccess(data); });
         return promise;
@@ -13,9 +13,9 @@ define(["service1", "Q"], function (Service1Ctor, Q) {
       };
       var getStub = sinon.stub().returns(promise);
       var httpMock = {get: getStub};
-      var service1 = new Service1Ctor(httpMock, Q);
+      var service1 = new Service1Ctor(Q, httpMock);
       var run = service1.getHttp("http://google.com");
-      return expect(run).to.be.fulfilled;
+      return expect(run).to.be.rejected;
     });
   });
 });
