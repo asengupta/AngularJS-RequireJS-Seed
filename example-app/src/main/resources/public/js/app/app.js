@@ -3,10 +3,11 @@ define(["angular", "Q", "jquery",
   "lib/libs",
   "app/directive/directives",
   "app/controller/controllers",
-  "app/factory/factories"],
+  "app/factory/factories",
+  "angular-route"],
   function(angular, Q, $, services, libs, directives, controllers, factories) {
     var init = function() {
-      var app = angular.module('ExampleApp', ["ngI18n"]);
+      var app = angular.module('ExampleApp', ["ngI18n", "ngRoute"]);
       services.init(app);
       libs.init(app);
       directives.init(app);

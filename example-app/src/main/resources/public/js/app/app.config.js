@@ -9,6 +9,7 @@ require.config({
     "underscore": "lib/underscore-min",
     "lodash": "lib/lodash",
     "ng-i18n": "lib/ng-i18n",
+    "angular-route": "lib/angular-route",
 
     //Controllers
     "route1-controller": "app/controller/controller1",
@@ -29,7 +30,8 @@ require.config({
     "ng-i18n": {deps: ["angular"], exports: "i18n"},
     'underscore': {exports: '_'},
     'angular': {exports: 'angular'},
-    'jquery': {exports: '$'}
+    'jquery': {exports: '$'},
+    'angular-route': { deps: ["angular"], exports: 'angular_route'}
   },
   deps: []
 });
