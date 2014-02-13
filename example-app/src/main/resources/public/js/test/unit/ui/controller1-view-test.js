@@ -30,15 +30,15 @@ define([ "spec_helper", "duckAngular"], function (mother, Duck) {
         });
       });
     });
-    it.skip("can prove that $q won't work in a plain unit test", function () {
-      return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
-        var injector = mvc.injector;
-        var $q = injector.get("$q");
-        console.log($q);
-        var d = $q.defer();
-        d.resolve({});
-        return d.promise;
-      });
-    });
+    // it.skip("can prove that $q won't work in a plain unit test", function () {
+    //   return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
+    //     var injector = mvc.injector;
+    //     var $q = injector.get("$q");
+    //     console.log($q);
+    //     var d = $q.defer();
+    //     d.resolve({});
+    //     return d.promise;
+    //   });
+    // });
   });
 });

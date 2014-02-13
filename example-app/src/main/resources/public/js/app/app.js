@@ -23,7 +23,7 @@ define(["angular", "Q", "jquery",
       app.value('ngI18nConfig', {
         defaultLocale: 'en',
         supportedLocales: ['en', 'es'],
-        basePath: "/example/static/js/app/i18n"
+        basePath: "/js/app/i18n"
       });
       return app;
     };
