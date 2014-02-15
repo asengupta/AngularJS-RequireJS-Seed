@@ -4,7 +4,7 @@ define(["spec_helper", "Q"], function (mother, Q) {
       var testScopeMock = {};
       runs(function() {
 	      return mother.createController("route1Controller", { $scope: testScopeMock}).then(function(controller) {
-	        expect(testScopeMock.x).to.eql("Real Service1 Dataddd");
+		 	expect(testScopeMock.x).to.eql("Real Service1 dData");
 	      });
       });
     });

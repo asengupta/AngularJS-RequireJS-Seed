@@ -130,13 +130,19 @@
                     {
                         // cache for subsequent use (outside promise context)
                         // Update to `true` when the promise resolves/rejects
-
                         response = data;
-                        result   = true;
+                        result   = {complete: true, fulfilled: true};
 
                         return data;
                     };
 
+                var onReleaseFail  = function( err )
+                    {
+                        // cache for subsequent use (outside promise context)
+                        // Update to `true` when the promise resolves/rejects
+                        response = err;
+                        result   = {complete: true, fulfilled: false, error: err};
+                    };
 
                 // (1) Perform the async all; which MUST return a promise
 
@@ -165,12 +171,11 @@
 
                         } else {
 
-                            retVal.then( onReleaseWait, onReleaseWait );
+                            retVal.then( onReleaseWait, onReleaseFail );
                         }
 
                     } else {
 
-                        console.log("CRAP NO"); 
                         // Immediately release the watcher...
                         onReleaseWait( retVal );
                     }
@@ -183,7 +188,7 @@
                 waitsFor.call( this, function()
                 {
                     // Waits until `true`
-                    return result;
+                    return result.complete;
 
                 }, timeOut );
 
@@ -192,6 +197,7 @@
 
                 runs.call( this, function()
                 {
+                    if (!result.fulfilled) throw new Error(result.error);   
                     if ( isDefined( expectFn ) )
                     {
                         // Forward promise response/fault to expectFn handler (if desired)

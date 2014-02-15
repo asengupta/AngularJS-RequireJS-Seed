@@ -34,8 +34,7 @@ require.config(
       duckAngular: "test/lib/duck-angular/duck-angular",
       underscore: "lib/underscore",
       "jasmine-as-promised": "test/lib/jasmine-as-promised",
-      jasmineAsPromisedRequireJS: "test/lib/jasmine-as-promised-requirejs"
-    },
+      },
     shim: {
       angular: { exports: "angular" },
       mocha: { exports: "mocha" },
