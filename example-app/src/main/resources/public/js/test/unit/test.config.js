@@ -33,6 +33,8 @@ require.config(
       chaiJquery: "test/lib/chai-jquery",
       duckAngular: "test/lib/duck-angular/duck-angular",
       underscore: "lib/underscore",
+      "jasmine-as-promised": "test/lib/jasmine-as-promised",
+      jasmineAsPromisedRequireJS: "test/lib/jasmine-as-promised-requirejs"
     },
     shim: {
       angular: { exports: "angular" },
@@ -41,6 +43,7 @@ require.config(
       underscore: { exports: "_" },
       "jquery": { exports: "$"},
       "ng-i18n": {deps: ["angular"], exports: "i18n"},
+      "jasmine-as-promised": {exports: "jasmineAsPromised"}
     },
 
     priority: ["angular"]
