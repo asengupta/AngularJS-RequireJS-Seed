@@ -2,7 +2,8 @@ var tests = [];
 var testNames = ["controller1-view-test.js",
 "controller2-test.js",
 "controller1-test.js",
-"service1-test.js" ];
+"service1-test.js",
+"directive1-test.js" ];
 for (var file in window.__karma__.files) {
   if (window.__karma__.files.hasOwnProperty(file)) {
     for (var i in testNames) {
