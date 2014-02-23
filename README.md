@@ -9,5 +9,6 @@ This project uses [Duck-Angular](https://github.com/asengupta/duck-angular) for 
 * [Part Two](http://avishek.net/blog/?p=1188)
 * [Part Three](http://avishek.net/blog/?p=1225)
 * [Part Four](http://avishek.net/blog/?p=1239)
+* [Part Five: Testing Directives](http://avishek.net/blog/?p=1489)
 * [A Quick Recap](http://avishek.net/blog/?p=1472)
 
