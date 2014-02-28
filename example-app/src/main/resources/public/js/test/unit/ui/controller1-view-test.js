@@ -3,11 +3,22 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
     var DuckDOM = Duck.DOM;
     var UIInteraction = Duck.UIInteraction;
 
+    it("can mock out indirect dependencies", function () {
+      var service3Mock = { getSomeData: function() {
+        return "Mock Service 3 Data";
+      }};
+      runs(function() {
+        return mother.createMvc("route2Controller", "../templates/route2.html", {}, null, {service3: service3Mock}).then(function (mvc) {
+          var dom = new DuckDOM(mvc.view, mvc.scope);
+          expect(dom.element("#data")[0].innerText).to.eql("Some Data, Mock Service 3 Data");
+        });
+      });
+    });
     it("can show data", function () {
       runs(function() {
-        return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
+      return mother.createMvc("route2Controller", "../templates/route2.html", {}, {}).then(function (mvc) {
           var dom = new DuckDOM(mvc.view, mvc.scope);
-          expect(dom.element("#data")[0].innerText).to.eql("Soddme Data");
+          expect(dom.element("#data")[0].innerText).to.eql("Some Data, True Data from Svc 3");
         });
       });
     });
@@ -17,7 +28,7 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
         return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
           var dom = new DuckDOM(mvc.view, mvc.scope);
           var interaction = new UIInteraction(dom);
-          expect(dom.element("#data")[0].innerText).to.eql("Some Dffata");
+          expect(dom.element("#data")[0].innerText).to.eql("Some Data, True Data from Svc 3");
           dom.interactWith("#changeLink");
           expect(dom.element("#data")[0].innerText).to.eql("Some New Data");
         });
@@ -28,11 +39,11 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
         return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
           var dom = new DuckDOM(mvc.view, mvc.scope);
           var interaction = new UIInteraction(dom);
-          expect(dom.element("#data")[0].innerText).to.eql("Some Data");
+          expect(dom.element("#data")[0].innerText).to.eql("Some Data, True Data from Svc 3");
           dom.interactWith("#changeLink");
-          expect(dom.element("#data")[0].innerText).to.eql("Some New Dffata");
+          expect(dom.element("#data")[0].innerText).to.eql("Some New Data");
           return interaction.with("#refreshLink").waitFor(mvc.scope, "refreshData").then(function() {
-            expect(dom.element("#data")[0].innerText).to.eql("Some Data");
+          expect(dom.element("#data")[0].innerText).to.eql("Some Data, True Data from Svc 3");
           });
         });
       });
@@ -40,7 +51,7 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
     it("tests", function() {
       runs(function() {
         return Q.fcall(function() {
-          return expect(1).to.eql(2);
+          return expect(2).to.eql(2);
         });
       });
     });
