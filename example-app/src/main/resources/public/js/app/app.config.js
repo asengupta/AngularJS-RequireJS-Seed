@@ -22,6 +22,7 @@ require.config({
     //Services
     "service1": "app/services/service1",
     "service2": "app/services/service2",
+    "service3": "app/services/service3",
 
     //Factories
     "factory1": "app/factory/factory1",

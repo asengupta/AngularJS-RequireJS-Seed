@@ -1,6 +1,16 @@
 define(["Q"], function(Q) {
-  var initApp = function () {
+  var initApp = function (appDependencies) {
+    appDependencies = appDependencies || {};
     return setupApp().spread(function (app, angularApp) {
+      _.each(_.keys(appDependencies), function (appDependencyKey) {
+        angularApp.config(function ($provide) {
+          $provide.provider(appDependencyKey, function () {
+            this.$get = function () {
+              return appDependencies[appDependencyKey];
+            };
+          });
+        });
+      });
       return bootstrapApp(app, angularApp);
     });
   };

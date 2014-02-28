@@ -12,13 +12,13 @@ define([], function() {
 
   $scope.refreshData = function() {
     return service2.get().then(function(data) {
-      $scope.data = data;
+      $scope.data = data.fromService2 + ", " + data.fromService3;
     });
   };
 
     console.log("In controller2");
     service2.get().then(function(data) {
-    	$scope.data = data;
+    	$scope.data = data.fromService2 + ", " + data.fromService3;
     	deferredLoaded.resolve();
     });
   };
