@@ -1,5 +1,5 @@
 define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
-  describe.only("Controller 2 UI Spec", function () {
+  describe("Controller 2 UI Spec", function () {
     var DuckDOM = Duck.DOM;
     var UIInteraction = Duck.UIInteraction;
 
@@ -47,16 +47,6 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
         return interaction.with("#refreshLink").waitFor(mvc.scope, "refreshData").then(function() {
           expect(dom.element("#data")[0].innerText).to.eql("Some Data, True Data from Svc 3");
         });
-      });
-    });
-    it("can prove that $q won't work in a plain unit test", function () {
-      return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
-        var injector = mvc.injector;
-        var $q = injector.get("$q");
-        console.log($q);
-        var d = $q.defer();
-        d.resolve({});
-        return d.promise;
       });
     });
   });
