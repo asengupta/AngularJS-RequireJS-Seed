@@ -27,8 +27,8 @@ define(["Q"], function(Q) {
 
   var bootstrapApp = function (app, angularApp) {
     var deferred = Q.defer();
-    app.bootstrap(angularApp).spread(function (injector, angularApp) {
-      deferred.resolve([injector, angularApp]);
+    app.bootstrap(angularApp).spread(function (injector, angularApp, provide) {
+      deferred.resolve([injector, angularApp, provide]);
     });
     return deferred.promise;
   };

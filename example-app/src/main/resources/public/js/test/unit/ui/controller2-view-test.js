@@ -1,5 +1,5 @@
 define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
-  describe("Controller 2 UI Spec", function () {
+  describe.only("Controller 2 UI Spec", function () {
     var DuckDOM = Duck.DOM;
     var UIInteraction = Duck.UIInteraction;
 
@@ -7,9 +7,19 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
       var service3Mock = { getSomeData: function() {
         return "Mock Service 3 Data";
       }};
-      return mother.createMvc("route2Controller", "../templates/route2.html", {}, null, {service3: service3Mock}).then(function (mvc) {
+      return mother.createMvc("route2Controller", "../templates/route2.html", {$scope: {lol: "Hmm"}}, null, {service3: service3Mock}).then(function (mvc) {
         var dom = new DuckDOM(mvc.view, mvc.scope);
         expect(dom.element("#data")[0].innerText).to.eql("Some Data, Mock Service 3 Data");
+      });
+    });
+    it("can support nested controllers with full DI", function () {
+      var service3Mock = { getSomeData: function() {
+        return "Mock Service 3 Data";
+      }};
+      return mother.createMvc("route2Controller", "../templates/route2.html", {$scope: {lol: "Hmm"}, "nestedController": { service2: {lol: "Yeah"}}}, null, {service3: service3Mock}).then(function (mvc) {
+        var dom = new DuckDOM(mvc.view, mvc.scope);
+        expect(dom.element("#data")[0].innerText).to.eql("Some Data, Mock Service 3 Data");
+        expect(dom.element("#nestedData").text()).to.eql("The stuff is Yayaya");
       });
     });
     it("can show data", function () {
@@ -39,7 +49,7 @@ define([ "spec_helper", "duckAngular", "Q"], function (mother, Duck, Q) {
         });
       });
     });
-    it.skip("can prove that $q won't work in a plain unit test", function () {
+    it("can prove that $q won't work in a plain unit test", function () {
       return mother.createMvc("route2Controller", "../templates/route2.html", {}).then(function (mvc) {
         var injector = mvc.injector;
         var $q = injector.get("$q");

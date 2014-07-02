@@ -23,7 +23,7 @@ require(["test.config"], function() {
         "test/unit/controllers/controller1-test",
         "test/unit/controllers/controller2-test",
 
-        "test/unit/ui/controller1-view-test",
+        "test/unit/ui/controller2-view-test",
         "test/unit/directives/directive1-test"
 
       ], function () {

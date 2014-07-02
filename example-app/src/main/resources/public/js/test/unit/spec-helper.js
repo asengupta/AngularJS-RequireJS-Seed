@@ -1,7 +1,7 @@
 define(["duckAngular", "underscore"], function (Duck, _) {
   var mother = {};
   var Container = Duck.Container;
-
+  var builder = Duck.ContainerBuilder;
   mother.createController = function createController(controllerName, dependencies, appDependencies) {
     return initApp(appDependencies).spread(function (injector, app) {
       mother.injector = injector;
@@ -19,7 +19,8 @@ define(["duckAngular", "underscore"], function (Duck, _) {
 
   mother.createMvc = function createMvc(controllerName, templateUrl, dependencies, options, appDependencies) {
     return initApp(appDependencies).spread(function (injector, app) {
-      var container = new Container(injector, app);
+      var container = builder.build("ExampleApp", app);
+      // var container = new Container(injector, app);
       var resourceBundleFactory = container.injector.get("ngI18nResourceBundle");
       return resourceBundleFactory.get("en").then(function (resourceBundle) {
         return container.mvc(controllerName, templateUrl, dependencies, _.extend(options || {}, {preBindHook: function (scope) {

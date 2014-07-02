@@ -8,4 +8,8 @@
   <div>
   	<a id="refreshLink" href="" ng-click="refreshData()">Click here to refresh data</a>
   </div>
+  <div ng-controller="nestedController" id="nestedScope">
+  	In nested controller div
+    <div id="nestedData">The stuff is {{nestedControllerData}}</div>
+  </div>
 </div>

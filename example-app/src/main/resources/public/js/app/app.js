@@ -13,13 +13,14 @@ define(["angular", "Q", "jquery",
       directives.init(app);
       controllers.init(app);
       factories.init(app);
-      app.config(['$routeProvider', function ($routeProvider) {
+      app.config(['$routeProvider', '$provide', function ($routeProvider, $provide) {
         $routeProvider.
           when('/navigation', {templateUrl: '/example/static/templates/navigation.html', controller: 'navigationController'}).
           when('/route1', {templateUrl: '/example/static/templates/route1.html', controller: 'route1Controller'}).
           when('/route2', {templateUrl: '/example/static/templates/route2.html', controller: 'route2Controller'}).
           otherwise({redirectTo: '/navigation'});
-      }]);
+
+        }]);
       app.value('ngI18nConfig', {
         defaultLocale: 'en',
         supportedLocales: ['en', 'es'],

@@ -15,6 +15,7 @@ require.config({
     "route1-controller": "app/controller/controller1",
     "route2-controller": "app/controller/controller2",
     "navigation-controller": "app/controller/navigation-controller",
+    "nested-controller": "app/controller/nested-controller",
 
     //Directives
     "directive1": "app/directive/directive1",
