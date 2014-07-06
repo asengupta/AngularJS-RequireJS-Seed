@@ -6,7 +6,7 @@ define([], function() {
     console.log("In nested controller");
     console.log("Service 2 is in nested as : " + JSON.stringify(service2));
     console.log("Service 2 is in nested has get? : " + service2.get);
-    $scope.nestedControllerData = "Yayaya";
+    $scope.nestedControllerData = "Yayaya/" + service2.get();
     console.log("Does my scope have lol? " + $scope.lol);
   };
 });

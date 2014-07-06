@@ -17,10 +17,10 @@ define(["duckAngular", "underscore"], function (Duck, _) {
     });
   };
 
-  mother.createMvc = function createMvc(controllerName, templateUrl, dependencies, options, appDependencies) {
+  mother.createMvc = function createMvc(controllerName, templateUrl, dependencies, options, appDependencies, hasMultipleControllers) {
+    hasMultipleControllers = hasMultipleControllers || false;
     return initApp(appDependencies).spread(function (injector, app) {
-      var container = builder.build("ExampleApp", app);
-      // var container = new Container(injector, app);
+      var container = builder.build("ExampleApp", app, {multipleControllers: hasMultipleControllers});
       var resourceBundleFactory = container.injector.get("ngI18nResourceBundle");
       return resourceBundleFactory.get("en").then(function (resourceBundle) {
         return container.mvc(controllerName, templateUrl, dependencies, _.extend(options || {}, {preBindHook: function (scope) {
